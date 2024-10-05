@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: demo_nest_ts  # Tên database
+      POSTGRES_USER: demo_nest_ts     # Tên người dùng
+      POSTGRES_PASSWORD: demo_nest_ts  # Mật khẩu người dùng
+    ports:
+      - "5432:5432"  # Mở cổng 5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data  # Lưu trữ dữ liệu
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com  # Email đăng nhập
+      PGADMIN_DEFAULT_PASSWORD: admin             # Mật khẩu đăng nhập
+    ports:
+      - "8080:80"  # Mở cổng 8080
+    depends_on:
+      - db  # Đảm bảo pgAdmin khởi động sau PostgreSQL
+
+volumes:
+  pg_data:  # Định nghĩa volume
