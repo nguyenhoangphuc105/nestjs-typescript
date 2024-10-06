@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarModule } from './car/car.module';
+import { MetricModule } from './metric/metric.module';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -24,7 +24,7 @@ dotenv.config();
       synchronize: true,
       autoLoadEntities: true,
     }),
-    CarModule,
+    MetricModule,
   ],
   controllers: [AppController],
   providers: [AppService],
